@@ -1,0 +1,126 @@
+Absolutely 👍 Here’s a **clean and complete README-style section** you can copy directly into your project (or use as a guide) — it includes **all the steps for stopping, rebuilding, and running** your Dockerized CRUD app again.
+
+---
+
+# 🧩 STEPS FOR RUNNING
+
+### 1️⃣ **Stop the running container (if any)**
+
+```bash
+docker stop elective3-crud-container
+```
+
+If you still have your previous container from another project (like *elective3-act1-container*), stop that too:
+
+```bash
+docker stop elective3-act1-container
+```
+
+---
+
+### 2️⃣ **Remove old containers**
+
+Remove the stopped containers to free up their names:
+
+```bash
+docker rm elective3-crud-container
+docker rm elective3-act1-container
+```
+
+If a container refuses to stop, you can **force remove** it:
+
+```bash
+docker rm -f elective3-act1-container
+```
+
+---
+
+### 3️⃣ **(Optional) Remove the old image**
+
+If you want a completely fresh rebuild:
+
+```bash
+docker rmi elective3-crud-app
+```
+
+You can check available images:
+
+```bash
+docker images
+```
+
+---
+
+### 4️⃣ **Build the Docker image**
+
+Make sure you’re inside your project folder:
+
+```bash
+cd C:\Users\harve\elective3-crud-app
+```
+
+Then build the image:
+
+```bash
+docker build -t elective3-crud-app .
+```
+
+---
+
+### 5️⃣ **Run the Docker container**
+
+Once the image is built successfully, start a new container:
+
+```bash
+docker run -d -p 3000:3000 --name elective3-crud-container elective3-crud-app
+```
+
+**Explanation:**
+
+* `-d` → Run in detached/background mode
+* `-p 3000:3000` → Maps local port 3000 to container’s port 3000
+* `--name elective3-crud-container` → Gives the container a name
+* `elective3-crud-app` → The image to run
+
+---
+
+### 6️⃣ **Check if it’s running**
+
+```bash
+docker ps
+```
+
+You should see something like:
+
+```
+CONTAINER ID   IMAGE                 PORTS                    NAMES
+xxxxxx         elective3-crud-app    0.0.0.0:3000->3000/tcp   elective3-crud-container
+```
+
+---
+
+### 7️⃣ **View logs (optional)**
+
+To confirm successful startup:
+
+```bash
+docker logs elective3-crud-container
+```
+
+Expected output:
+
+```
+✅ Connected to MySQL
+🚀 Server running on http://localhost:3000
+```
+
+---
+
+### 8️⃣ **Open the web app**
+
+Finally, open your browser and go to:
+👉 [http://localhost:3000](http://localhost:3000)
+
+You should now see your **CRUD web interface** running inside Docker 🎉
+
+---
